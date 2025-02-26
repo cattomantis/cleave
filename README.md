@@ -1,6 +1,9 @@
-# LLM Project Template
+# Cleave
 
-This repository provides a template for developing LLM-based applications with Docker and Jekyll-based documentation.
+Inspired by the work of Liu et.al., 2024 (Kangaroo), we propose a way to distill and evalulate smaller versions of a larger language models. For instance a 20 Layer Qwen2.5 Model distilled from the 36 Layer full size version of the same.
+
+#### TODO List
+- [ ] add support for sliding window attention
 
 ## Getting Started
 
