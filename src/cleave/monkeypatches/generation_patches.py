@@ -33,9 +33,16 @@ def latent_mode_generate(
         Same description for the args as described here:
         https://github.com/huggingface/transformers/blob/main/src/transformers/generation/utils.py#L1906
     
-    Example:
+    How to patch:
     ```python
+    from cleave.monkeypatches import latent_mode_generate
+    from transformers import AutoModelForCausalLM
     
+    
+    model = AutoModelForCausalLM.from_pretrained("gpt2")
+    
+    # The moneypatched method is now available on the model
+    model.generate = latent_mode_generate
     ```
     """
     ...
