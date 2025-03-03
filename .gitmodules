@@ -1,3 +1,8 @@
 [submodule "submodules/coconut"]
 	path = submodules/coconut
 	url = https://github.com/facebookresearch/coconut.git
+
+
+[submodule "data/ShareGPT_Vicuna_unfiltered"]
+	path = data/ShareGPT_Vicuna_unfiltered
+	url = https://huggingface.co/datasets/Aeala/ShareGPT_Vicuna_unfiltered
