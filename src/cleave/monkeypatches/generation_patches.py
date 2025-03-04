@@ -46,14 +46,16 @@ def cls_prepare_inputs_for_generation(
 
     How to patch:
     ```python
-    from cleave.monkeypatches import latent_prepare_inputs_for_generation
+    from cleave.monkeypatches import cls_prepare_inputs_for_generation
     from transformers import AutoModelForCausalLM
 
     
     model = AutoModelForCausalLM.from_pretrained("gpt2")
     
     # The moneypatched method is now available on the model
-    model.prepare_inputs_for_generation = latent_prepare_inputs_for_generation
+    model.__class__ = type("AutoModelForCausalLatentLM", (model.__class__,), {
+        "prepare_inputs_for_generation": cls_prepare_inputs_for_generation
+    })
     ```
     """
     # 1. Handle BC:
@@ -206,14 +208,16 @@ def cls_sample(
 
     How to patch:
     ```python
-    from cleave.monkeypatches import _latent_sample
+    from cleave.monkeypatches import cls_sample
     from transformers import AutoModelForCausalLM
     
     
     model = AutoModelForCausalLM.from_pretrained("gpt2")
     
     # The moneypatched method is now available on the model
-    model.generate = _latent_sample
+    model.__class__ = type("AutoModelForCausalLatentLM", (model.__class__,), {
+        "_sample": cls_sample
+    })
     ```
     """
     # init values
