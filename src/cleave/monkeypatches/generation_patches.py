@@ -281,7 +281,7 @@ def latent_sample(
             outputs = self(**model_inputs, return_dict=True, output_hidden_states=True)
             is_prefill = False
         else:
-            outputs = model_forward(**model_inputs, return_dict=True)
+            outputs = model_forward(**model_inputs, return_dict=True, output_hidden_states=True)
 
         # synced_gpus: don't waste resources running the code we don't need; kwargs must be updated before skipping
         model_kwargs = self._update_model_kwargs_for_generation(
@@ -301,8 +301,8 @@ def latent_sample(
         # We are using the last hidden state of the last token to generate the next token
         next_token_hidden_state = outputs.hidden_states[-1][:, -1, :].clone().float()
         next_token_hidden_state = next_token_hidden_state.to(input_ids.device)
-        # Create an alias for readability
-        inputs_embeds_sent_to_model = next_token_hidden_state
+        # Create an alias for readability; Also maintain batch x 1 x hidden_size shape.
+        inputs_embeds_sent_to_model = next_token_hidden_state.unsqueeze(1)
 
         # pre-process distribution
         next_token_scores = logits_processor(input_ids, next_token_logits)
