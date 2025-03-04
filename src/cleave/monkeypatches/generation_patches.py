@@ -186,7 +186,7 @@ def latent_prepare_inputs_for_generation(
     model_inputs.pop("labels", None)
     return model_inputs
 
-def _latent_sample(
+def latent_sample(
     self,
     input_ids: torch.LongTensor,
     logits_processor: LogitsProcessorList,
