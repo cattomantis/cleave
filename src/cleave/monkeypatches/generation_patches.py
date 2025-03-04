@@ -264,7 +264,7 @@ def latent_sample(
         # Sush Look here:
         # Only sending the input_ids for the first iteration/timestep.
         # An empty tensor of shape (batch_size, 0) for subsequent iterations/timesteps.
-        input_ids_sent_to_model = input_ids if not inputs_embeds_sent_to_model \
+        input_ids_sent_to_model = input_ids if inputs_embeds_sent_to_model is None \
             else torch.tensor([[]] * input_ids.size(0), device=input_ids.device)
         # prepare model inputs
         model_inputs = self.prepare_inputs_for_generation(
