@@ -28,7 +28,8 @@ import warnings
 from typing import Optional, List, Callable, Union
 
 
-def latent_prepare_inputs_for_generation(
+# cls = continous latent space
+def cls_prepare_inputs_for_generation(
     self,
     input_ids: torch.LongTensor,
     past_key_values: Optional[Cache] = None,
@@ -186,7 +187,8 @@ def latent_prepare_inputs_for_generation(
     model_inputs.pop("labels", None)
     return model_inputs
 
-def latent_sample(
+# cls = continous latent space
+def cls_sample(
     self,
     input_ids: torch.LongTensor,
     logits_processor: LogitsProcessorList,
