@@ -5,5 +5,6 @@ from cleave.monkeypatches.generation_patches import (
 )
 
 __all__ = [
-    "latent_mode_generate",
+    "latent_sample",
+    "latent_prepare_inputs_for_generation"
 ]
